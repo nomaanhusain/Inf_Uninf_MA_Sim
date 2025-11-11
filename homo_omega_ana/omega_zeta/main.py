@@ -256,7 +256,7 @@ if __name__ == '__main__':
     # env_options = [2, 5, 10, 20]
     sn_steps = [0.0, 0.2]
     cn_steps = [0.2, 0.4]
-    piw_steps = [0.4,0.6]
+    piw_steps = [0.4, 0.6]
     swarm_sizes = [50, 100]
     env_options = [2, 5]
     neighbourhood_size = [5, 10]
@@ -266,10 +266,10 @@ if __name__ == '__main__':
     total_runs = (len(cn_steps) * len(piw_steps) * len(sn_steps) * len(swarm_sizes)* len(env_options))
     # Nested loops to iterate over all combinations
     for s in swarm_sizes:
-        # neighbourhood_size = list(range(5, s, 5)) #TODO: Change this
+        # neighbourhood_size = list(range(5, s, 5))
         # neighbourhood_size.append(s-1)
         # total_runs *= len(env_options)
-        # print(f"M= {neighbourhood_size}")
+        print(f"M= {neighbourhood_size}")
         for env_op in env_options:
             for m in neighbourhood_size:
                 for cn_main in cn_steps: #switch the for loop at this place to the param that you want to fix in the sim, also change the main_file_path in plot_graph.py and the path in HeatmapMaker()

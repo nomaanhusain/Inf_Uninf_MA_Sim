@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Example run: python3 analysis_best_omega_N_vs_cn.py --base_dir output_data --M 10 --n 5 --sn 0.2
+# Example run: python3 analysis_best_omega_N_vs_cn.py --base_dir output_data --M 10 --n 5 --sn 0.2 --verbose
 
 def parse_args():
     p = argparse.ArgumentParser(description="Build heatmap of best omega by (N, cn).")
@@ -206,14 +206,14 @@ def save_csv(Ns, cns, omega_mat, out_csv):
     df_out = pd.DataFrame(omega_mat, index=Ns, columns=cns)
     df_out.index.name = "N"
     df_out.columns.name = "cn"
-    df_out.to_csv(out_csv)
+    df_out.to_csv(os.path.join("analysis_N_vs_cn",out_csv))
     return df_out
 
 
 def plot_heatmap(df_out, out_png, title=None):
     # Single-axes imshow without specifying any colormap or style (use matplotlib defaults).
     fig, ax = plt.subplots(figsize=(10, 6))
-    im = ax.imshow(df_out.values, aspect='auto', origin='lower', interpolation='bilinear')  # default colormap/style, interpoaltion='bicubic' also possible
+    im = ax.imshow(df_out.values, aspect='auto', origin='lower', interpolation='bilinear')  # interpoaltion='bicubic' also possible
 
     # Ticks and labels
     ax.set_yticks(np.arange(len(df_out.index)))
@@ -229,7 +229,7 @@ def plot_heatmap(df_out, out_png, title=None):
     fig.colorbar(im, ax=ax, label="best ω")
 
     fig.tight_layout()
-    fig.savefig(out_png, dpi=200)
+    fig.savefig(os.path.join("analysis_N_vs_cn", out_png), dpi=300)
     plt.close(fig)
 
 

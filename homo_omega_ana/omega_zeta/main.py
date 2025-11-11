@@ -249,28 +249,30 @@ if __name__ == '__main__':
     start_time = time.time()
     # values from 0.0 to 1.0 in steps of 0.2
 
-    sn_steps = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    # sn_steps = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
     # cn_steps = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-    piw_steps = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]
+    # piw_steps = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]
     # swarm_sizes = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200]
-    # sn_steps = [0.0, 0.2]
-    cn_steps = [0.2]
-    # piw_steps = [0.4,0.6]
-    swarm_sizes = [100]
-    env_options = [5]
+    # env_options = [2, 5, 10, 20]
+    sn_steps = [0.0, 0.2]
+    cn_steps = [0.2, 0.4]
+    piw_steps = [0.4,0.6]
+    swarm_sizes = [50, 100]
+    env_options = [2, 5]
+    neighbourhood_size = [5, 10]
 
     # for each cn, create a folder. for each n (env. option) create a folder.
 
     total_runs = (len(cn_steps) * len(piw_steps) * len(sn_steps) * len(swarm_sizes)* len(env_options))
     # Nested loops to iterate over all combinations
     for s in swarm_sizes:
-        neighbourhood_size = list(range(5, s, 5)) #TODO: Change this
-        neighbourhood_size.append(s-1)
-        total_runs *= len(env_options)
-        print(f"M= {neighbourhood_size}")
+        # neighbourhood_size = list(range(5, s, 5)) #TODO: Change this
+        # neighbourhood_size.append(s-1)
+        # total_runs *= len(env_options)
+        # print(f"M= {neighbourhood_size}")
         for env_op in env_options:
             for m in neighbourhood_size:
-                for cn_main in cn_steps: #switch for loop to this place on the param that you want to fix, also change the main_file_path in plot_graph.py
+                for cn_main in cn_steps: #switch the for loop at this place to the param that you want to fix in the sim, also change the main_file_path in plot_graph.py and the path in HeatmapMaker()
                     for sn_main in sn_steps:
                         for piw_main in piw_steps:
                             total_runs -= 1
